@@ -6,7 +6,7 @@
 
 PROGNAME=`basename "$0"`
 DIRNAME=`dirname "$0"`
-
+GRAILS_HOME=/local/git/grails-2.4.4
 # Use the maximum available, or set MAX_FD != -1 to use that
 MAX_FD="maximum"
 
