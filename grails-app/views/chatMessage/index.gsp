@@ -41,6 +41,10 @@ function getUsers()
 
 function getMessages()
 {
+	if(sendToUser == ""){
+		return;
+	}
+
     $.ajax({ 
       url: 'ChatMessage/getMessages/',
       data: 'username=' + sendToUser, 
@@ -134,7 +138,9 @@ $(document).ready(function(){
 
 		<div id="messagelist" style="margin-left: 20px;">
 			Conversations With: <span id="messagesfromuser"></span>
-			<textarea id="messageslistarea" style="height: 400px; width: 850px"></textarea>
+			<textarea id="messageslistarea" style="height: 400px; width: 850px">
+				Please select a recipient user by clicking on a username in the list below!
+			</textarea>
 		</div>	
 	
 		<div id="userlist" style="float: left;  margin-left: 20px;">
