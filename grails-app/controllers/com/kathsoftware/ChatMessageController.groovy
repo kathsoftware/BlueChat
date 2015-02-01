@@ -2,15 +2,16 @@ package com.kathsoftware
 
 import grails.converters.JSON
 import grails.plugin.springsecurity.annotation.Secured
+
 import java.util.Date;
 
 
 class ChatMessageController {
 
-	def blueChatLoggingService
-		
+	//Inject Service with Spring DI
 	def springSecurityService
 	
+	//Show default chat window.  If not logged in will display login page
 	@Secured(['IS_AUTHENTICATED_FULLY'])
     def index() { }
 	
@@ -19,13 +20,13 @@ class ChatMessageController {
 
 		def currentUser = SecAppUser.findById(springSecurityService.currentUser.id).username
 		
-		blueChatLoggingService.logDebugMessage("Getting User List For User: " + currentUser)
+		logDebugMessage("Getting User List For User: " + currentUser)
 		
 		def results = SecAppUser.findAll(sort:"username", order: "asc"){
 			username != currentUser			
 		}
 
-		blueChatLoggingService.logDebugMessage("getUserList(): Returning " + results.size() + " users.")
+		logDebugMessage("getUserList(): Returning " + results.size() + " users.")
 						
 		JSON.use('deep')
 		render results as JSON
@@ -41,14 +42,14 @@ class ChatMessageController {
 		msg.message = message
 		msg.dateTimeSent = new Date()
 
-		blueChatLoggingService.logDebugMessage("Sending Message '" + msg.message + 
+		logDebugMessage("Sending Message '" + msg.message + 
 											"' From User '" + msg.fromUser + "' To User: '" + msg.toUser + "'")				
 		String returnMessage = "Message Sent!"
 		
 		if (!msg.save(flush: true)) {
-			blueChatLoggingService.logDebugMessage("Error Saving Message: ")
+			logDebugMessage("Error Saving Message: ")
 			msg.errors.each {
-				blueChatLoggingService.logDebugMessage("Error: " + it)
+				logDebugMessage("Error: " + it)
 			}
 			
 			returnMessage = "Error Sending Message"
@@ -62,14 +63,13 @@ class ChatMessageController {
 		
 		String fromUserStr = SecAppUser.findById(springSecurityService.currentUser.id).username
 		
-		blueChatLoggingService.logDebugMessage("Returning Messages For User: " + username)
-		
+		logDebugMessage("Returning Messages For User: " + username)
 		
 		def results = ChatMessage.where {
 			(fromUser == fromUserStr && toUser == username) || (fromUser == username && toUser == fromUserStr)
 		}.list()
 		
-		blueChatLoggingService.logDebugMessage("getMessages():Returning " + results.size() + " users.")
+		logDebugMessage("getMessages():Returning " + results.size() + " messages.")
 			
 		def msgList = []
 		for(result in results){
@@ -80,6 +80,16 @@ class ChatMessageController {
 		
 		JSON.use('deep')
 		render msgList as JSON
+	}
+	
+	private def logDebugMessage(String msg) {
+		
+		if(System.getProperty("bluechat.logging") != "DEBUG"){
+			return
+		}
+		
+		log.debug msg
+
 	}
 		
 }

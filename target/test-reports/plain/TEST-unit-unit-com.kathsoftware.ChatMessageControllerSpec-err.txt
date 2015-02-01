@@ -1,0 +1,3 @@
+--Output from test getUserList--
+--Output from test sendMessage--
+--Output from test getMessages()--

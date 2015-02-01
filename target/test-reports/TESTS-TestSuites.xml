@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites>
+  <testsuite errors="0" failures="0" hostname="Jamess-MacBook-Pro.local" id="0" name="ChatMessageControllerSpec" package="com.kathsoftware" tests="3" time="10.116" timestamp="2015-02-01T19:29:45">
+      <properties />
+
+      <testcase classname="com.kathsoftware.ChatMessageControllerSpec" name="test getUserList" time="9.585" />
+
+      <testcase classname="com.kathsoftware.ChatMessageControllerSpec" name="test sendMessage" time="0.209" />
+
+      <testcase classname="com.kathsoftware.ChatMessageControllerSpec" name="test getMessages()" time="0.253" />
+
+      <system-out><![CDATA[--Output from test getUserList--
+Success Registering User: jkath
+Success Registering User: mcaldas
+Success Registering User: sjang
+Success setting up sent message
+=======================================
+[{"class":"com.kathsoftware.SecAppUser","id":2,"accountExpired":false,"accountLocked":false,"enabled":true,"password":"pwd2","passwordExpired":false,"username":"mcaldas"},{"class":"com.kathsoftware.SecAppUser","id":3,"accountExpired":false,"accountLocked":false,"enabled":true,"password":"pwd3","passwordExpired":false,"username":"sjang"}]
+=======================================
+--Output from test sendMessage--
+Success Registering User: jkath
+Success Registering User: mcaldas
+Success Registering User: sjang
+Success setting up sent message
+=======================================
+Message Sent!
+=======================================
+--Output from test getMessages()--
+Success Registering User: jkath
+Success Registering User: mcaldas
+Success Registering User: sjang
+Success setting up sent message
+=======================================
+[{"dateTimeSent":"02/01/2015 12:29:55","fromUser":"jkath","toUser":"mcaldas","message":"This is a unit test message"}]
+=======================================
+]]></system-out>
+
+      <system-err><![CDATA[--Output from test getUserList--
+--Output from test sendMessage--
+--Output from test getMessages()--
+]]></system-err>
+
+  </testsuite>
+</testsuites>

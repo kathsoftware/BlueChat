@@ -91,7 +91,6 @@ environments {
     }
     production {
         grails.logging.jul.usebridge = false
-        // TODO: grails.serverURL = "http://www.changeme.com"
     }
 }
 
@@ -103,10 +102,6 @@ log4j.main = {
 	root {
 		debug 'file'
 	}
-	
-    //appenders {
-    //    console name:'stdout', layout:pattern(conversionPattern: '%c{2} %m%n')
-    //}
 
     error    'com.kathsoftware.ChatMessageController'
 		   
@@ -121,6 +116,7 @@ grails.plugin.springsecurity.secureChannel.secureHeaderName = 'X-Forwarded-Proto
 grails.plugin.springsecurity.secureChannel.secureHeaderValue = 'http'
 grails.plugin.springsecurity.secureChannel.insecureHeaderName = 'X-Forwarded-Proto'
 grails.plugin.springsecurity.secureChannel.insecureHeaderValue = 'https'
+
 // Added by the Spring Security Core plugin:
 grails.plugin.springsecurity.userLookup.userDomainClassName = 'com.kathsoftware.SecAppUser'
 grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'com.kathsoftware.SecAppUserSecAppRole'
