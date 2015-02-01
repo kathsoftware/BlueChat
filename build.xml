@@ -1,0 +1,40 @@
+<project name="BlueChat" default="dist" basedir=".">
+    <description>
+       Build/Test/Deploy the BlueChat Chat Application 
+    </description>
+  <!-- set global properties for this build -->
+  <property name="src" location="src"/>
+
+  <target name="compile" depends="clean"
+        description="compile the source " >
+    <!-- Compile the groovy code -->
+    <exec dir="." executable="grails">
+       <arg line="compile"/>
+    </exec>
+  </target>
+
+  <target name="test" depends="compile"
+        description="run the unit tests" >
+    <!-- Create the distribution directory -->
+    <exec dir="." executable="grails">
+       <arg line="test-app"/>
+    </exec>
+  </target>
+
+  <!-- This will force a clean compile and start the app -->
+  <!-- The app will run at http://localhost:8080/BlueChat  -->
+  <target name="run"
+        description="run the server application" >
+    <exec dir="." executable="grails" error="run.txt">
+       <arg line="run-app"/>
+    </exec>
+  </target>
+  
+  <target name="clean" description="clean up" >
+    <!-- Clean the entire app forcing complete code recompilation  -->
+    <exec dir="." executable="grails">
+       <arg line="clean"/>
+    </exec>
+  </target>
+
+</project>
